@@ -43,10 +43,10 @@ DoublyLinkedList<T> :: DoublyLinkedList()
 template<class T>
 void DoublyLinkedList<T> :: addFront(T d)
 {
-	Node<T>* newNode = new Node<T>();
-	newNode->data = d;
-	newNode->prev = NULL;
-	newNode->next = head;
+	Node<T>* newNode = new Node<T>(); //Make the new Node.
+	newNode->data = d; //Put data in the new Node.
+	newNode->prev = NULL; //New Node prev is NULL.
+	newNode->next = head; //New Node next is the head.
 	
 	if(head == NULL)
 	{

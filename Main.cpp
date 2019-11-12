@@ -15,9 +15,9 @@ int main()
 	dll.addFront(7);
 	dll.addFront(a);
 	//dll.popFront();
-	dll.addBack(8);
+	//dll.addBack(8);
 	//dll.popBack();
-	dll.addNode(100,ten);
+	//dll.addNode(100,ten);
 	//cout<<dll.getSize()<<endl;
 	dll.displayList();
 	return 0;
