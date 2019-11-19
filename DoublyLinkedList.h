@@ -94,7 +94,7 @@ void DoublyLinkedList<T> :: popBack()
 	tail->next = NULL;
 	size--;
 }
-template<class T>
+//template<class T>
 //void DoublyLinkedList<T> :: addNode(T d, Node<T>* iter)
 //{
 //	while(head->next == iter)
@@ -122,6 +122,14 @@ template<class T>
 int DoublyLinkedList<T> :: getSize() const
 {
 	return size;
+}
+template<class T>
+bool DoublyLinkedList<T> :: isEmpty() const
+{
+	if(size==0)
+		return true;
+	else
+		return false;
 }
 template<class T>
 void DoublyLinkedList<T> :: displayList() const

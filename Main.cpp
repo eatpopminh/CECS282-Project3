@@ -19,7 +19,8 @@ int main()
 	//dll.addBack(8);
 	//dll.popBack();
 	//dll.addNode(100,ten);
-	//cout<<dll.getSize()<<endl;
+	cout<<dll.getSize()<<endl;
+	cout<<dll.isEmpty()<<endl;
 	dll.displayList();
 	return 0;
 }
