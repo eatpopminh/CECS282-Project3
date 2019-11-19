@@ -14,6 +14,7 @@ int main()
 	
 	dll.addFront(7);
 	dll.addFront(a);
+	
 	//dll.popFront();
 	//dll.addBack(8);
 	//dll.popBack();

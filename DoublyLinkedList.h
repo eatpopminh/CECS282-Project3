@@ -94,20 +94,29 @@ void DoublyLinkedList<T> :: popBack()
 	tail->next = NULL;
 	size--;
 }
-//template<class T>
+template<class T>
 //void DoublyLinkedList<T> :: addNode(T d, Node<T>* iter)
 //{
-
-//	Node<T>* newNode = new Node<T>();
-//	Node<T>* pointer;
-//	for(int i = 0 ; i < size ; i++)
+//	while(head->next == iter)
 //	{
-//		if(pointer == iter)
-//		{
-//			cout<<"BOB"<<endl;
-//		}
-//		pointer = head->next;
+//		Node<T>* newNode = new Node<T>();
+//		newNode->data = d;
+//		newNode->prev = head;
+//		newNode->next = iter;
+//		
+//		head->next = newNode;
+//		iter->prev = newNode;
 //	}
+////	Node<T>* newNode = new Node<T>();
+////	Node<T>* pointer;
+////	for(int i = 0 ; i < size ; i++)
+////	{
+////		if(pointer == iter)
+////		{
+////			cout<<"BOB"<<endl;
+////		}
+////		pointer = head->next;
+////	}
 //}
 template<class T>
 int DoublyLinkedList<T> :: getSize() const
