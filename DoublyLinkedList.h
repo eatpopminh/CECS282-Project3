@@ -22,7 +22,16 @@ class DoublyLinkedList
 						//of a doubly linked list
 		void addBack(T d);
 		void popBack();
-		void addNode(T d, Node<T>* iter);
+		void addNode(T d, Node<T>* iter)
+		{
+			Node<T>* temp = first;
+			while(temp != iter)
+			{
+				temp = temp -> next;
+			}
+			temp = iter;
+			
+		}
 		void deleteNode(T d, Node<T>* iter);
 		Node<T>* findNode(T d);
 		int getSize() const;
