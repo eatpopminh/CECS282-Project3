@@ -7,14 +7,14 @@ using namespace std;
 int main()
 {
 	DoublyLinkedList<int> dll;
-	Node<int>* iter = dll.getHead();
-	while(count < 5)
-	{
-		iter = iter -> next;
-		count++;
-	}
-	ten->data = 10;
-	dll.addNode(10,iter);
+//	Node<int>* iter = dll.getHead();
+//	while(count < 5)
+//	{
+//		iter = iter -> next;
+//		count++;
+//	}
+//	ten->data = 10;
+//	dll.addNode(10,iter);
 	
 	int a = 6;
 	
@@ -29,5 +29,8 @@ int main()
 	cout<<dll.getSize()<<endl;
 	cout<<dll.isEmpty()<<endl;
 	dll.displayList();
+	
 	return 0;
 }
+
+    
