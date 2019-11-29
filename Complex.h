@@ -27,11 +27,14 @@ Complex :: Complex(int r, int i, int d)
 	im = i;
 	dem = d;
 }
-//string Complex :: toString() const
-//{
-//	string temp = "[" + static_cast<char>(re); //+ " + " ;//+ static_cast<char>(im) + "i]/" + static_cast<char>(dem);
-//	return temp;
-//}
+string Complex :: toString() const
+{
+	
+	string temp = "noooo";//to_string(re);
+	//string temp = "hello";//"[" + static_cast<char>(re); //+ " + " ;//+ static_cast<char>(im) + "i]/" + static_cast<char>(dem);
+	return temp;
+	
+}
 
 //Overloading operator for easy arithmetic
 Complex operator+(Complex a, Complex b);

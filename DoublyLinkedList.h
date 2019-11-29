@@ -3,7 +3,7 @@
 #include "Node.h"
 #include <iostream>
 #include <string>
-#include <iterator>
+//#include <iterator>
 using namespace std;
 
 template <class T>
@@ -22,21 +22,14 @@ class DoublyLinkedList
 						//of a doubly linked list
 		void addBack(T d);
 		void popBack();
-//		void addNode(T d, Node<T>* iter)
-//		{
-//			Node<T>* temp = first;
-//			while(temp != iter)
-//			{
-//				temp = temp -> next;
-//			}
-//			temp = iter;
-//			
-//		}
+		void addNode(T d, Node<T>* iter);
 		void deleteNode(T d, Node<T>* iter);
 		Node<T>* findNode(T d);
 		int getSize() const;
 		bool isEmpty() const;
 		void displayList() const;
+		
+		Node<T>* getHead() const;
 };
 
 
@@ -103,30 +96,32 @@ void DoublyLinkedList<T> :: popBack()
 	tail->next = NULL;
 	size--;
 }
-//template<class T>
-//void DoublyLinkedList<T> :: addNode(T d, Node<T>* iter)
-//{
-//	while(head->next == iter)
-//	{
-//		Node<T>* newNode = new Node<T>();
-//		newNode->data = d;
-//		newNode->prev = head;
-//		newNode->next = iter;
-//		
-//		head->next = newNode;
-//		iter->prev = newNode;
-//	}
-////	Node<T>* newNode = new Node<T>();
-////	Node<T>* pointer;
-////	for(int i = 0 ; i < size ; i++)
-////	{
-////		if(pointer == iter)
-////		{
-////			cout<<"BOB"<<endl;
-////		}
-////		pointer = head->next;
-////	}
-//}
+template<class T>
+void DoublyLinkedList<T> :: addNode(T d, Node<T>* iter)
+{
+	Node<T>* temp = head;
+	while(temp != iter)
+	{
+		temp = temp -> next;
+	}
+	temp = iter;
+	//cout<<temp->data<<endl;
+	Node<T>* newNode = new Node<T>();
+	newNode->data = d;
+	newNode->prev = temp->prev;
+	newNode->next = temp;
+	(temp->prev)->next = newNode;
+	
+	
+	temp->prev = newNode;
+	size++;
+}
+template<class T>
+void DoublyLinkedList<T> :: deleteNode(T d, Node<T>* iter)
+{
+	
+}
+
 template<class T>
 int DoublyLinkedList<T> :: getSize() const
 {
@@ -151,6 +146,12 @@ void DoublyLinkedList<T> :: displayList() const
 		tempHead = tempHead->next;
 	}
 	cout<<"NULL"<<endl;
+}
+
+template<class T>
+Node<T>* DoublyLinkedList<T> :: getHead() const
+{
+	return head;
 }
 
 

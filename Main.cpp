@@ -7,32 +7,42 @@ using namespace std;
 
 int main()
 {
-//	DoublyLinkedList<int> dll;
-////	Node<int>* iter = dll.getHead();
-////	while(count < 5)
-////	{
-////		iter = iter -> next;
-////		count++;
-////	}
-////	ten->data = 10;
-////	dll.addNode(10,iter);
-//	
-//	int a = 6;
-//	
-//	dll.addFront(7);
-//	dll.addFront(a);
-//	
-//	//dll.popFront();
-//	//dll.addBack(8);
-//	//dll.popBack();
-//	//dll.addNode(100,ten);
-//	
-//	cout<<dll.getSize()<<endl;
-//	cout<<dll.isEmpty()<<endl;
-//	dll.displayList();
+	DoublyLinkedList<int> dll;
 	
-	Complex com(3,4,1);
-	//cout<<com.toString()<<endl;
+	
+	
+	
+	int a = 6;
+	
+	dll.addFront(7);
+	dll.addFront(a);
+	dll.addFront(9);
+	dll.addFront(19);
+	dll.addFront(90);
+
+	//dll.popFront();
+	dll.addBack(8);
+	//dll.popBack();
+	
+	cout<<dll.getSize()<<endl;
+	cout<<dll.isEmpty()<<endl;
+	
+//	Complex com(3,4,1);
+//	cout<<com.toString()<<endl;
+
+	Node<int>* iter = dll.getHead();
+
+	int count = 0;
+	while(count < 3)
+	{
+		iter = iter->next;
+		count++;
+	}
+	cout<<iter->data<<endl;
+	dll.addNode(100,iter);
+	
+	dll.displayList();
+
 	
 	
 	return 0;
