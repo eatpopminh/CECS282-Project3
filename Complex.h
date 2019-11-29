@@ -1,3 +1,5 @@
+#ifndef COMPLEX_H
+#define COMPLEX_H
 #include <iostream>
 #include <string>
 
@@ -54,3 +56,5 @@ Complex operator+(Complex a, Complex b)
 //Find GCD and LCM to reduce fraction and add fraction
 int gcd(int a, int b);
 int lcm(int a, int b);
+
+#endif
