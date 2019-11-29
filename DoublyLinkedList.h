@@ -105,7 +105,7 @@ void DoublyLinkedList<T> :: addNode(T d, Node<T>* iter)
 		temp = temp -> next;
 	}
 	temp = iter;
-	//cout<<temp->data<<endl;
+	cout<<temp->data<<endl;
 	Node<T>* newNode = new Node<T>();
 	newNode->data = d;
 	newNode->prev = temp->prev;
@@ -119,7 +119,27 @@ void DoublyLinkedList<T> :: addNode(T d, Node<T>* iter)
 template<class T>
 void DoublyLinkedList<T> :: deleteNode(T d, Node<T>* iter)
 {
+	Node<T>* temp = head;
+	while(temp != iter)
+	{
+		temp = temp -> next;
+	}
 	
+	temp = iter;
+	Node<T>* tempPrev = temp->prev;
+	tempPrev->next = temp->next;
+	(temp->next)->prev = tempPrev;
+	 size--;
+}
+template<class T>
+Node<T>* DoublyLinkedList<T> :: findNode(T d)
+{
+	Node<T>* temp = head;
+	while(temp->data != d)
+	{
+		temp = temp->next;
+	}
+	return temp;
 }
 
 template<class T>
