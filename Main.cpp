@@ -1,10 +1,63 @@
 #include <iostream>
 #include <string>
+#include <fstream>
+#include <sstream>
 #include "DoublyLinkedList.h"
 #include "StackDoublyLinkedList.h"
 #include "Node.h"
 #include "Complex.h"
 using namespace std;
+
+
+void pushingOprands(StackDoublyLinkedList<int>& oprands, string express)
+{
+	int index = 0;
+	string temp = "";
+	bool flag = true;
+	while(flag)
+	{
+		if(express[index]=='+' || express[index]=='-' || express[index]=='*' || express[index]=='/'
+			  || express[index]=='(' || express[index]==')' || express[index]=='i' || express[index]=='=')
+		{
+			if(temp!="")
+			{
+				int i;
+				istringstream(temp)>>i;
+				oprands.addFront(i);
+				temp = "";
+			}
+		}
+		else
+		{
+			temp = temp + express[index];
+		}
+		if(express[index]=='=')
+		{
+			flag = false;
+		}
+		index++;
+		
+	}
+}
+void pushingOperat(StackDoublyLinkedList<char>& operats, string express)
+{
+	int index = 0;
+	bool flag = true;
+	while(flag)
+	{
+		if(express[index]=='+' || express[index]=='-' || express[index]=='*' || express[index]=='/'
+			  || express[index]=='(' || express[index]==')' || express[index]=='i' || express[index]=='=')
+		{
+			operats.addFront(express[index]);
+		}
+	
+		if(express[index]=='=')
+		{
+			flag = false;
+		}
+		index++;
+	}
+}
 
 int main()
 {
@@ -90,31 +143,84 @@ int main()
 //	
 //	dll2.displayList();
 	
-	StackDoublyLinkedList<int> sdll;
-	sdll.addFront(5);
-	sdll.addFront(4);
-	sdll.addFront(3);
-	sdll.addFront(2);
-//	cout<<"TOP: "<<sdll.getTop()<<endl;
-//	sdll.displayStack();
+//	StackDoublyLinkedList<int> sdll;
+//	sdll.addFront(5);
+//	sdll.addFront(4);
+//	sdll.addFront(3);
+//	sdll.addFront(2);
+////	cout<<"TOP: "<<sdll.getTop()<<endl;
+////	sdll.displayStack();
+//	
+//	Complex com(2,3,1);
+//	cout<<com<<endl;
+//	
+//	Complex com1(7,1,1);
+//	cout<<com1<<endl;
+//	cout<<endl;
+//	Complex com3 = com + com1;
+//	cout<<"+: "<<com3<<endl;
+//	
+//	Complex com4 = com - com1;
+//	cout<<"-: "<<com4<<endl;
+//	
+//	Complex com5 = com * com1;
+//	cout<<"*: "<<com5<<endl;
+//	
+//	Complex com6 = com / com1;
+//	cout<<"/: "<<com6<<endl;
+
+	//ofstream out;
+	//out.open("output.txt",ios_base::app);
+	string express = "33+2i*4+1=";
+	cout<<express<<endl;
+	StackDoublyLinkedList<char> operats;
+	StackDoublyLinkedList<int> oprands;
+//	int index = 0;
+//	string temp = "";
+//	bool flag = true;
+//	while(flag)
+//	{
+//		if(express[index]=='+' || express[index]=='-' || express[index]=='*' || express[index]=='/'
+//			  || express[index]=='(' || express[index]==')' || express[index]=='i' || express[index]=='=')
+//		{
+//			if(temp!="")
+//			{
+//				int i;
+//				istringstream(temp)>>i;
+//				cout<<i<<endl;
+//				oprands.addFront(i);
+//				temp = "";
+//			}
+//		}
+//		else
+//		{
+//			temp = temp + express[index];
+//		}
+//		if(express[index]=='=')
+//		{
+//			flag = false;
+//		}
+//		index++;
+//		
+//	}
+	pushingOprands(oprands, express);
+	pushingOperat(operats, express);
+	oprands.displayList();
+	operats.displayList();
 	
-	Complex com(2,3,1);
-	cout<<com<<endl;
 	
-	Complex com1(7,1,1);
-	cout<<com1<<endl;
-	cout<<endl;
-	Complex com3 = com + com1;
-	cout<<"+: "<<com3<<endl;
 	
-	Complex com4 = com - com1;
-	cout<<"-: "<<com4<<endl;
 	
-	Complex com5 = com * com1;
-	cout<<"*: "<<com5<<endl;
 	
-	Complex com6 = com / com1;
-	cout<<"/: "<<com6<<endl;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	return 0;
 }
