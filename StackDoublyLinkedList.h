@@ -14,17 +14,27 @@ class StackDoublyLinkedList : public DoublyLinkedList<T>
 		T getTop() const;	
 	
 };
-
+template<class T>
 StackDoublyLinkedList<T> :: StackDoublyLinkedList()
-{
-	DoublyLinkedList<T> dll;
-}
-void StackDoublyLinkedList<T> :: displayStack() const
 {
 	
 }
+template<class T>
+void StackDoublyLinkedList<T> :: displayStack() const
+{
+	Node<T>* temp = DoublyLinkedList<T>::head;
+	while(temp!=NULL)
+	{
+		cout<<temp->data<<endl;
+		temp = temp->next;
+	}	
+}
+template<class T>
 T StackDoublyLinkedList<T> :: getTop() const
 {
+	Node<T>* temp = DoublyLinkedList<T>:: head;
+
+	return temp->data;
 	
 }
 

@@ -3,7 +3,6 @@
 #include "Node.h"
 #include <iostream>
 #include <string>
-//#include <iterator>
 using namespace std;
 
 template <class T>
@@ -173,6 +172,7 @@ Node<T>* DoublyLinkedList<T> :: getHead() const
 {
 	return head;
 }
+
 
 
 #endif
