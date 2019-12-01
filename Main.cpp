@@ -50,6 +50,27 @@ void pushingEverything(StackDoublyLinkedList<string>& all,string express)
 		
 	}
 }
+void splitOPS(StackDoublyLinkedList<string>& all,StackDoublyLinkedList<char>& operats, StackDoublyLinkedList<int>& oprands)
+{
+	while(!all.isEmpty())
+	{
+		string temp = all.getTop();
+		int i;
+		istringstream(temp)>>i;
+		
+		if(i==0)
+		{
+			char temp1 = all.getTop()[0];
+			operats.addFront(temp1);
+		}
+		else
+		{
+			oprands.addFront(i);
+		}
+		all.popFront();	
+	}
+}
+
 
 void pushingOprands(StackDoublyLinkedList<int>& oprands, string express)
 {
@@ -232,38 +253,25 @@ int main()
 //	operats.displayList();
 	
 	pushingEverything(all,express);
-	//all.displayList();
 	
 	
-//	while(!all.isEmpty())
-//	{
-//		string temp = all.getTop();
-//		int i;
-//		istringstream(temp)>>i;
-//		
-////		if((temp=="+" || temp=="-" || temp=="*" || temp=="/"
-////			  || temp=="(" || temp==")" || temp=="i" || temp=="="))
-//		if(i==0)
-//		{
-//			char temp1 = all.getTop()[0];
-//			operats.addFront(temp1);
-//		}
-//		else
-//		{
-//			oprands.addFront(i);
-//		}
-//		all.popFront();	
-//	}
-//	all.popFront();
-//		all.popFront();
-//	all.popFront();
-//
-//	all.popFront();
-//
-//	all.popFront();
-//	all.popFront();
-//	all.popFront();
-//	all.popFront();
+	splitOPS(all, operats, oprands);
+	while(!all.isEmpty())
+	{
+		string temp = all.getTop();
+		int i;
+		istringstream(temp)>>i;
+		if(i==0)
+		{
+			char temp1 = all.getTop()[0];
+			operats.addFront(temp1);
+		}
+		else
+			oprands.addFront(i);
+		all.popFront();	
+	}
+	
+	
 
 
 	cout<<"all: "<<endl;
