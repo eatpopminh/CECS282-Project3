@@ -50,7 +50,27 @@ void pushingEverything(StackDoublyLinkedList<string>& all,string express)
 		
 	}
 }
-void splitOPS(StackDoublyLinkedList<string>& all,StackDoublyLinkedList<char>& operats, StackDoublyLinkedList<int>& oprands)
+bool pushOne(StackDoublyLinkedList<string>& all,StackDoublyLinkedList<char>& operators, StackDoublyLinkedList<int>& oprands)
+{
+	string temp = all.getTop();
+	int i;
+	istringstream(temp)>>i;
+	if(i==0)
+	{
+		char temp1 = all.getTop()[0];
+		operators.addFront(temp1);
+		all.popFront();
+		return true;
+	}
+	else
+	{
+		oprands.addFront(i);
+		all.popFront();	
+		return false;
+	}
+		
+}
+void splitOPS(StackDoublyLinkedList<string>& all,StackDoublyLinkedList<char>& operators, StackDoublyLinkedList<int>& oprands)
 {
 	while(!all.isEmpty())
 	{
@@ -61,7 +81,7 @@ void splitOPS(StackDoublyLinkedList<string>& all,StackDoublyLinkedList<char>& op
 		if(i==0)
 		{
 			char temp1 = all.getTop()[0];
-			operats.addFront(temp1);
+			operators.addFront(temp1);
 		}
 		else
 		{
@@ -102,7 +122,7 @@ void pushingOprands(StackDoublyLinkedList<int>& oprands, string express)
 		
 	}
 }
-void pushingOperat(StackDoublyLinkedList<char>& operats, string express)
+void pushingOperat(StackDoublyLinkedList<char>& operators, string express)
 {
 	int index = 0;
 	bool flag = true;
@@ -111,7 +131,7 @@ void pushingOperat(StackDoublyLinkedList<char>& operats, string express)
 		if(express[index]=='+' || express[index]=='-' || express[index]=='*' || express[index]=='/'
 			  || express[index]=='(' || express[index]==')' || express[index]=='i' || express[index]=='=')
 		{
-			operats.addFront(express[index]);
+			operators.addFront(express[index]);
 		}
 	
 		if(express[index]=='=')
@@ -234,11 +254,15 @@ int main()
 
 	//ofstream out;
 	//out.open("output.txt",ios_base::app);
-	string express = "(33+2i)*4+1=";
+	string express = "(22+i)*22-i=";
 	cout<<express<<endl;
-	StackDoublyLinkedList<char> operats;
+	StackDoublyLinkedList<char> operators;
 	StackDoublyLinkedList<int> oprands;
 	StackDoublyLinkedList<string> all;
+	StackDoublyLinkedList<Complex> complex;
+	StackDoublyLinkedList<Complex> answers;
+
+
 	
 	
 //	string temp = "0";
@@ -252,34 +276,168 @@ int main()
 //	oprands.displayList();
 //	operats.displayList();
 	
+	
+	//push ALL Operators and Oprands into one stack.
 	pushingEverything(all,express);
-	
-	
-	splitOPS(all, operats, oprands);
-	while(!all.isEmpty())
-	{
-		string temp = all.getTop();
-		int i;
-		istringstream(temp)>>i;
-		if(i==0)
-		{
-			char temp1 = all.getTop()[0];
-			operats.addFront(temp1);
-		}
-		else
-			oprands.addFront(i);
-		all.popFront();	
-	}
-	
-	
-
-
 	cout<<"all: "<<endl;
 	all.displayList();
+	
+
+	//push ONE into Operators or Oprands.
+	//return 1 if Operator
+	//return 0 if Oprands
+//	pushOne(all,operators,oprands);
+//	pushOne(all,operators,oprands);
+//	pushOne(all,operators,oprands);
+//	pushOne(all,operators,oprands);
+
+	bool flag = true;
+	while(flag)
+	{
+		int idk = pushOne(all,operators,oprands);
+
+		if(idk==1)
+		{
+			if(operators.getTop()=='i')
+			{
+				operators.popFront();
+				if(oprands.getSize()==2)
+				{
+					int temp1 = oprands.getTop();
+					oprands.popFront();
+					int temp2 = oprands.getTop();
+					oprands.popFront();
+					
+					if(operators.getTop()=='+')
+					{
+						Complex com(temp2,temp1,1);
+						complex.addFront(com);
+						cout<<com<<endl;
+					}
+					else
+					{
+						Complex com(temp2,-temp1,1);
+						complex.addFront(com);
+						cout<<com<<endl;
+					}
+				}
+				else
+				{
+					int temp1 = oprands.getTop();
+					oprands.popFront();
+					
+					
+					if(operators.getTop()=='+')
+					{
+						Complex com(temp1,1,1);
+						complex.addFront(com);
+						cout<<com<<endl;
+					}
+					else
+					{
+						Complex com(temp1,-1,1);
+						complex.addFront(com);
+						cout<<com<<endl;
+					}
+				}
+				operators.popFront();
+			}
+			
+			
+		}
+		else
+		{
+			
+		}	
+		
+		
+		
+		
+		
+		if(operators.getTop()=='=')
+		{
+			flag = false;
+			operators.popFront();
+		}
+	}
+	char op = operators.getTop();
+	cout<<op<<endl;
+		if(op=='+')
+		{
+			
+		}
+		else if(op=='-')
+		{
+			
+		}
+		else if(op=='*')
+		{
+			Complex temp1 = complex.getTop();
+			complex.popFront();
+			Complex temp2 = complex.getTop();
+			complex.popFront();
+			Complex com = temp2 * temp1;
+			answers.addFront(com);
+			cout<<com<<endl;
+		}
+		else if(op=='/')
+		{
+			
+		}
+
+
+//	if(oprands.getSize()==2)
+//	{
+//		
+//		int im = oprands.getTop();
+//		oprands.popFront();
+//		//cout<<"hello"<<pushOne(all,operators,oprands);
+//
+//		if(pushOne(all,operators,oprands)==1)
+//		{
+//			if(operators.getTop()=='i')
+//			{
+//				operators.popFront();
+//			}
+//		}
+//
+//		
+//		int re = oprands.getTop();
+//		oprands.popFront();
+//		//operators
+//		char temp = operators.getTop();
+//		operators.popFront();
+//		if(temp=='+')
+//		{
+//			Complex com(re,im,1);
+//			cout<<com<<endl;
+//		}
+//		if(temp=='-')
+//		{
+//			Complex com(re,-im,1);
+//			cout<<com<<endl;
+//		}	
+//		
+//	
+//		
+//	}
+//	pushOne(all,operators,oprands);
+	
+	
+	
+	
+		
+		
+
+		
+			
+		
+		
+	
 	cout<<"Oprands: "<<endl;
 	oprands.displayList();
 	cout<<"Operator: "<<endl;
-	operats.displayList();
+	operators.displayList();
 	
 	
 	
