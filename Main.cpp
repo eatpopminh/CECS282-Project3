@@ -8,6 +8,48 @@
 #include "Complex.h"
 using namespace std;
 
+void pushingEverything(StackDoublyLinkedList<string>& all,string express)
+{
+	int index = 0;
+	string temp = "";
+	bool flag = true;
+	while(flag)
+	{
+		if(express[index]=='+' || express[index]=='-' || express[index]=='*' || express[index]=='/'
+			  || express[index]=='(' || express[index]==')' || express[index]=='i' || express[index]=='=')
+		{
+			if(temp!="")
+			{
+				all.addBack(temp);
+				temp = "";
+				
+				
+				string temp1 = "";
+				temp1 = temp1 + express[index];
+				all.addBack(temp1);
+				temp1 = "";
+				
+			}
+			else
+			{
+				string temp1 = "";
+				temp1 = temp1 + express[index];
+				all.addBack(temp1);
+				temp1 = "";
+			}
+		}
+		else
+		{
+			temp = temp + express[index];
+		}
+		if(express[index]=='=')
+		{
+			flag = false;
+		}
+		index++;
+		
+	}
+}
 
 void pushingOprands(StackDoublyLinkedList<int>& oprands, string express)
 {
@@ -171,47 +213,65 @@ int main()
 
 	//ofstream out;
 	//out.open("output.txt",ios_base::app);
-	string express = "33+2i*4+1=";
+	string express = "(33+2i)*4+1=";
 	cout<<express<<endl;
 	StackDoublyLinkedList<char> operats;
 	StackDoublyLinkedList<int> oprands;
-//	int index = 0;
-//	string temp = "";
-//	bool flag = true;
-//	while(flag)
+	StackDoublyLinkedList<string> all;
+	
+	
+//	string temp = "0";
+//	int i;
+//	istringstream(temp)>>i;
+//	cout<<i<<endl;	
+	
+	
+//	pushingOprands(oprands, express);
+//	pushingOperat(operats, express);
+//	oprands.displayList();
+//	operats.displayList();
+	
+	pushingEverything(all,express);
+	//all.displayList();
+	
+	
+//	while(!all.isEmpty())
 //	{
-//		if(express[index]=='+' || express[index]=='-' || express[index]=='*' || express[index]=='/'
-//			  || express[index]=='(' || express[index]==')' || express[index]=='i' || express[index]=='=')
+//		string temp = all.getTop();
+//		int i;
+//		istringstream(temp)>>i;
+//		
+////		if((temp=="+" || temp=="-" || temp=="*" || temp=="/"
+////			  || temp=="(" || temp==")" || temp=="i" || temp=="="))
+//		if(i==0)
 //		{
-//			if(temp!="")
-//			{
-//				int i;
-//				istringstream(temp)>>i;
-//				cout<<i<<endl;
-//				oprands.addFront(i);
-//				temp = "";
-//			}
+//			char temp1 = all.getTop()[0];
+//			operats.addFront(temp1);
 //		}
 //		else
 //		{
-//			temp = temp + express[index];
+//			oprands.addFront(i);
 //		}
-//		if(express[index]=='=')
-//		{
-//			flag = false;
-//		}
-//		index++;
-//		
+//		all.popFront();	
 //	}
-	pushingOprands(oprands, express);
-	pushingOperat(operats, express);
+//	all.popFront();
+//		all.popFront();
+//	all.popFront();
+//
+//	all.popFront();
+//
+//	all.popFront();
+//	all.popFront();
+//	all.popFront();
+//	all.popFront();
+
+
+	cout<<"all: "<<endl;
+	all.displayList();
+	cout<<"Oprands: "<<endl;
 	oprands.displayList();
+	cout<<"Operator: "<<endl;
 	operats.displayList();
-	
-	
-	
-	
-	
 	
 	
 	

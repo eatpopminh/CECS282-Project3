@@ -63,9 +63,16 @@ void DoublyLinkedList<T> :: addFront(T d)
 template<class T>
 void DoublyLinkedList<T> :: popFront()
 {
-	Node<T>* temp = head->next;
-	temp->prev = NULL;
-	head = temp;
+	if(head->next == NULL)
+	{
+		head = NULL;
+	}
+	else
+	{
+		Node<T>* temp = head->next;
+		temp->prev = NULL;
+		head = temp;
+	}
 	size--;
 }
 template<class T>
