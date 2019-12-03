@@ -70,6 +70,75 @@ bool pushOne(StackDoublyLinkedList<string>& all,StackDoublyLinkedList<char>& ope
 	}
 		
 }
+int getPrecedence(char ch)
+{
+	switch(ch)
+	{
+		case '+':
+		case '-': return 1;
+		case '*':
+		case '/': return 2;
+		case '(':
+		case ')': return 3;
+		default: return -1;
+		
+			
+	}
+}
+Complex operate(Complex num1, Complex num2, char op)
+{
+	if(op=='+')return num1 + num2;
+    if(op=='-')return num1 - num2;
+    if(op=='*')return num1 * num2;
+    return num1 / num2;
+
+}
+bool isDigit(char c)
+{
+	return (c>='0' && c<='9');
+}
+bool isOp(char c)
+{
+	return (c=='+' || c=='-' ||c=='*' ||c=='/' ||c=='(' ||c==')');
+}
+//int evaluate(string s)
+//{
+//	StackDoublyLinkedList<char> ops;
+//	StackDoublyLinkedList<int> vals;
+//	int val = 0;
+//	int pos = 0;
+//	while(pos<s.length())
+//	{
+//		char spot = s[pos];
+//		if(isDigit(spot))
+//		{
+//			val = (val*10)+(int)(spot-'0');
+//		}
+//		else if(isOp(spot))
+//		{
+//			if(spot == '(')
+//			{
+//				ops.addFront(spot);
+//				val = 0;
+//			}
+//			if(vals.isEmpty())
+//			{
+//				vals.addFront(val);
+//				//ops.addFront(ops);
+//				val=0;
+//			}
+//			else if(spot==')')
+//			{
+//				vals.addFront(val);
+//				while(ops.getTop()!='(')
+//				{
+//					spot = ops.popFront();
+//					val = vals.popFront();
+//				}
+//			}
+//		}
+//	}
+//}
 void splitOPS(StackDoublyLinkedList<string>& all,StackDoublyLinkedList<char>& operators, StackDoublyLinkedList<int>& oprands)
 {
 	while(!all.isEmpty())
@@ -146,121 +215,17 @@ int main()
 {
 
 
-//	DoublyLinkedList<int> dll;
-//		
-//	dll.addFront(7);
-//	dll.addFront(6);
-//	dll.addFront(9);
-//	dll.addFront(19);
-//	dll.addFront(90);
-//
-//	//dll.popFront();
-////	dll.addBack(8);
-//	//dll.popBack();
-//	
-////	cout<<dll.getSize()<<endl;
-////	cout<<dll.isEmpty()<<endl;
-//	
-////	Complex com(3,4,1);
-////	cout<<com.toString()<<endl;
-//
-//
-//	//addNode()
-//	Node<int>* iter = dll.getHead();
-//
-//	int count = 0;
-//	while(count < 3)
-//	{
-//		iter = iter->next;
-//		count++;
-//	}
-//	//cout<<iter->data<<endl;
-//	dll.addNode(100,iter);
-//	
-//	//deleting a node.
-//	Node<int>* iter1 = dll.getHead();
-//	count = 0;
-//	while(count<4)
-//	{
-//		iter1 = iter1->next;
-//		count++;
-//	}
-//	dll.deleteNode(100,iter1);
-//	
-//	//findNode()
-//	Node<int>* myNode = dll.findNode(100);
-//	//cout<<myNode->data<<endl;
-//	dll.displayList();
-//
-//	DoublyLinkedList<int> dll2;
-//	
-//	
-//	dll2.addBack(1);
-//	dll2.addBack(2);
-//	dll2.addBack(4);
-//	dll2.addBack(5);
-//	dll2.addBack(6);
-//	
-//	Node<int>* it = dll2.getHead();
-//	int place = 0;
-//	while(place <2)
-//	{
-//		it = it->next;
-//		place++;
-//	}
-//	
-//	dll2.addNode(3,it); 
-//	dll2.displayList();
-//
-//	cout<<"MY HEAD: "<<dll2.getHead()->data<<endl;
-//	cout<<"MY HEAD NEXT: "<<dll2.getHead()->next->data<<endl;
-//	
-//	Node<int>* delit = dll2.getHead();
-//	int del = 0;
-//	while (del < 2)
-//	{
-//		delit = delit -> next;
-//		del++;
-//	}
-//	dll2.deleteNode(3, delit);
-//	
-//	dll2.displayList();
-	
-//	StackDoublyLinkedList<int> sdll;
-//	sdll.addFront(5);
-//	sdll.addFront(4);
-//	sdll.addFront(3);
-//	sdll.addFront(2);
-////	cout<<"TOP: "<<sdll.getTop()<<endl;
-////	sdll.displayStack();
-//	
-//	Complex com(2,3,1);
-//	cout<<com<<endl;
-//	
-//	Complex com1(7,1,1);
-//	cout<<com1<<endl;
-//	cout<<endl;
-//	Complex com3 = com + com1;
-//	cout<<"+: "<<com3<<endl;
-//	
-//	Complex com4 = com - com1;
-//	cout<<"-: "<<com4<<endl;
-//	
-//	Complex com5 = com * com1;
-//	cout<<"*: "<<com5<<endl;
-//	
-//	Complex com6 = com / com1;
-//	cout<<"/: "<<com6<<endl;
+
 
 	//ofstream out;
 	//out.open("output.txt",ios_base::app);
-	string express = "(22+i)*22-i=";
+	string express = "33+2i*4+i=";
 	cout<<express<<endl;
 	StackDoublyLinkedList<char> operators;
 	StackDoublyLinkedList<int> oprands;
 	StackDoublyLinkedList<string> all;
 	StackDoublyLinkedList<Complex> complex;
-	StackDoublyLinkedList<Complex> answers;
+	StackDoublyLinkedList<string> all2;
 
 
 	
@@ -281,7 +246,7 @@ int main()
 	pushingEverything(all,express);
 	cout<<"all: "<<endl;
 	all.displayList();
-	
+	cout<<all.getTop()<<endl;
 
 	//push ONE into Operators or Oprands.
 	//return 1 if Operator
@@ -291,67 +256,276 @@ int main()
 //	pushOne(all,operators,oprands);
 //	pushOne(all,operators,oprands);
 
+
 	bool flag = true;
 	while(flag)
 	{
 		int idk = pushOne(all,operators,oprands);
+		
+		
+//		if(operators.getTop()=='i')
+//		{
+//			//char temp = operators.getTop();
+////			operators.popFront();
+////			if((operators.getTop()!='+' && operators.getTop()!='-'))
+////			{
+////				string s(1,operators.getTop());
+////				all2.addFront(s);
+////			}
+////			operators.addFront(temp);
+//		}
+		
+//		if( operators.getTop()=='*' || operators.getTop()=='/' || operators.getTop()=='%')
+//		{
+//			string s(1,operators.getTop());
+//			all2.addFront(s);
+//			operators.popFront();
+//		}
+//		if(operators.getTop()=='(' || operators.getTop()==')')
+//		{
+//			string s(1,operators.getTop());
+//			all2.addFront(s);
+//			//all2.popFront();
+//		}
+//		operators.displayList();
 
-		if(idk==1)
+		
+		if(operators.getTop()=='i')
 		{
-			if(operators.getTop()=='i')
+			operators.popFront();
+			if(oprands.getSize()==2)
 			{
-				operators.popFront();
-				if(oprands.getSize()==2)
+				int temp1 = oprands.getTop();
+				oprands.popFront();
+				int temp2 = oprands.getTop();
+				oprands.popFront();
+				
+				if(operators.getTop()=='+')
 				{
-					int temp1 = oprands.getTop();
-					oprands.popFront();
-					int temp2 = oprands.getTop();
-					oprands.popFront();
-					
-					if(operators.getTop()=='+')
-					{
-						Complex com(temp2,temp1,1);
-						complex.addFront(com);
-						cout<<com<<endl;
-					}
-					else
-					{
-						Complex com(temp2,-temp1,1);
-						complex.addFront(com);
-						cout<<com<<endl;
-					}
+					Complex com(temp2,temp1,1);
+					complex.addFront(com);
+					//all2.addFront((com.toString()));
+
+					cout<<com<<endl;
 				}
 				else
 				{
-					int temp1 = oprands.getTop();
-					oprands.popFront();
-					
-					
-					if(operators.getTop()=='+')
-					{
-						Complex com(temp1,1,1);
-						complex.addFront(com);
-						cout<<com<<endl;
-					}
-					else
-					{
-						Complex com(temp1,-1,1);
-						complex.addFront(com);
-						cout<<com<<endl;
-					}
+					Complex com(temp2,-temp1,1);
+					complex.addFront(com);
+					//all2.addFront((com.toString()));
+
+					cout<<com<<endl;
 				}
-				operators.popFront();
 			}
-			
-			
+			else
+			{
+				int temp1 = oprands.getTop();
+				oprands.popFront();
+				
+				
+				if(operators.getTop()=='+')
+				{
+					Complex com(temp1,1,1);
+					complex.addFront(com);
+					//all2.addFront((com.toString()));
+
+					cout<<com<<endl;
+				}
+				else
+				{
+					Complex com(temp1,-1,1);
+					complex.addFront(com);
+//					string temp = com.toString();
+					//all2.addFront((com.toString()));
+					cout<<com<<endl;
+				}
+			}
+			operators.popFront();
 		}
-		else
-		{
-			
-		}	
+		
+//		if(idk==0)
+//		{
+//			cout<<"HERE"<<endl;
+//			oprands.displayList();
+//			operators.displayList();
+//			if(operators.getTop()==')')
+//			{
+//				cout<<"HERE"<<endl;
+//
+//				operators.popFront();
+//
+//				int temp1 = oprands.getTop();
+//				oprands.popFront();
+//				int temp2 = oprands.getTop();
+//				oprands.popFront();
+//				if(operators.getTop()=='+')
+//				{
+//					Complex com(temp2,temp1,1);
+//					complex.addFront(com);
+//					cout<<com<<endl;
+//				}
+//				else
+//				{
+//					Complex com(temp2,-temp1,1);
+//					complex.addFront(com);
+//					cout<<com<<endl;
+//				}
+//				operators.popFront();
+//
+//			}
+//		}
+//		if(idk==1)
+//		{
+//			if(operators.getTop()=='(')
+//			{
+//				while(operators.getTop()!=')')
+//				{
+//					int idk = pushOne(all,operators,oprands);	
+//				}
+//				cout<<"AFTER()"<<endl;
+//				operators.displayList();
+//				operators.popFront();
+//				
+//				if(operators.getTop()=='i')
+//				{
+//					operators.popFront();
+//					if(oprands.getSize()==2)
+//					{
+//						int temp1 = oprands.getTop();
+//						oprands.popFront();
+//						int temp2 = oprands.getTop();
+//						oprands.popFront();
+//						
+//						if(operators.getTop()=='+')
+//						{
+//							Complex com(temp2,temp1,1);
+//							complex.addFront(com);
+//							cout<<com<<endl;
+//						}
+//						else
+//						{
+//							Complex com(temp2,-temp1,1);
+//							complex.addFront(com);
+//							cout<<com<<endl;
+//						}
+//					}
+//					else
+//					{
+//						int temp1 = oprands.getTop();
+//						oprands.popFront();
+//						
+//						
+//						if(operators.getTop()=='+')
+//						{
+//							Complex com(temp1,1,1);
+//							complex.addFront(com);
+//							cout<<com<<endl;
+//						}
+//						else
+//						{
+//							Complex com(temp1,-1,1);
+//							complex.addFront(com);
+//							cout<<com<<endl;
+//						}
+//					}
+//					operators.popFront();
+//				}
+//				
+//			}
+//				
+//		}
+//			if(operators.getTop()=='i')
+//			{
+//				operators.popFront();
+//				if(oprands.getSize()==2)
+//				{
+//					int temp1 = oprands.getTop();
+//					oprands.popFront();
+//					int temp2 = oprands.getTop();
+//					oprands.popFront();
+//					
+//					if(operators.getTop()=='+')
+//					{
+//						Complex com(temp2,temp1,1);
+//						complex.addFront(com);
+//						cout<<com<<endl;
+//					}
+//					else
+//					{
+//						Complex com(temp2,-temp1,1);
+//						complex.addFront(com);
+//						cout<<com<<endl;
+//					}
+//				}
+//				else
+//				{
+//					int temp1 = oprands.getTop();
+//					oprands.popFront();
+//					
+//					
+//					if(operators.getTop()=='+')
+//					{
+//						Complex com(temp1,1,1);
+//						complex.addFront(com);
+//						cout<<com<<endl;
+//					}
+//					else
+//					{
+//						Complex com(temp1,-1,1);
+//						complex.addFront(com);
+//						cout<<com<<endl;
+//					}
+//				}
+//				operators.popFront();
+//			
+//		}
 		
 		
-		
+		//THIS SHIT WORKS
+//			if(operators.getTop()=='i')
+//			{
+//				operators.popFront();
+//				if(oprands.getSize()==2)
+//				{
+//					int temp1 = oprands.getTop();
+//					oprands.popFront();
+//					int temp2 = oprands.getTop();
+//					oprands.popFront();
+//					
+//					if(operators.getTop()=='+')
+//					{
+//						Complex com(temp2,temp1,1);
+//						complex.addFront(com);
+//						cout<<com<<endl;
+//					}
+//					else
+//					{
+//						Complex com(temp2,-temp1,1);
+//						complex.addFront(com);
+//						cout<<com<<endl;
+//					}
+//				}
+//				else
+//				{
+//					int temp1 = oprands.getTop();
+//					oprands.popFront();
+//					
+//					
+//					if(operators.getTop()=='+')
+//					{
+//						Complex com(temp1,1,1);
+//						complex.addFront(com);
+//						cout<<com<<endl;
+//					}
+//					else
+//					{
+//						Complex com(temp1,-1,1);
+//						complex.addFront(com);
+//						cout<<com<<endl;
+//					}
+//				}
+//				operators.popFront();
+//			}	
 		
 		
 		if(operators.getTop()=='=')
@@ -360,30 +534,53 @@ int main()
 			operators.popFront();
 		}
 	}
-	char op = operators.getTop();
-	cout<<op<<endl;
-		if(op=='+')
-		{
-			
-		}
-		else if(op=='-')
-		{
-			
-		}
-		else if(op=='*')
-		{
-			Complex temp1 = complex.getTop();
-			complex.popFront();
-			Complex temp2 = complex.getTop();
-			complex.popFront();
-			Complex com = temp2 * temp1;
-			answers.addFront(com);
-			cout<<com<<endl;
-		}
-		else if(op=='/')
-		{
-			
-		}
+	
+//	char op = operators.getTop();
+//	cout<<op<<endl;
+//		if(op=='+')
+//		{
+//			Complex temp1 = complex.getTop();
+//			complex.popFront();
+//			Complex temp2 = complex.getTop();
+//			complex.popFront();
+//			Complex com = temp2 + temp1;
+//			answers.addFront(com);
+//			operators.popFront();
+//			cout<<com<<endl;
+//		}
+//		else if(op=='-')
+//		{
+//			Complex temp1 = complex.getTop();
+//			complex.popFront();
+//			Complex temp2 = complex.getTop();
+//			complex.popFront();
+//			Complex com = temp2 - temp1;
+//			answers.addFront(com);
+//			operators.popFront();
+//			cout<<com<<endl;
+//		}
+//		else if(op=='*')
+//		{
+//			Complex temp1 = complex.getTop();
+//			complex.popFront();
+//			Complex temp2 = complex.getTop();
+//			complex.popFront();
+//			Complex com = temp2 * temp1;
+//			answers.addFront(com);
+//			operators.popFront();
+//			cout<<com<<endl;
+//		}
+//		else if(op=='/')
+//		{
+//			Complex temp1 = complex.getTop();
+//			complex.popFront();
+//			Complex temp2 = complex.getTop();
+//			complex.popFront();
+//			Complex com = temp2 / temp1;
+//			answers.addFront(com);
+//			operators.popFront();
+//			cout<<com<<endl;
+//		}
 
 
 //	if(oprands.getSize()==2)
@@ -431,22 +628,20 @@ int main()
 
 		
 			
-		
-		
+	cout<<"MY Complex: "<<endl;
+//	while(complex.isEmpty()==0)
+//	{
+//		cout<<complex.getTop()<<endl;
+//		complex.popFront();
+//	}
+//	cout<<"ALL: "<<endl;
+//	all2.displayList();
+
 	
 	cout<<"Oprands: "<<endl;
 	oprands.displayList();
 	cout<<"Operator: "<<endl;
 	operators.displayList();
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	return 0;
 }
