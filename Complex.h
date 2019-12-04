@@ -53,7 +53,6 @@ string Complex :: toString() const
 		temp = "[" + temp + "+" + temp1 + "i]/" + temp2;
 	
 	return temp;
-	
 }
 
 //Overloading operator for easy arithmetic

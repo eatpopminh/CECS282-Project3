@@ -19,20 +19,18 @@ class DoublyLinkedList
 							//of the doubly linked list
 		void popFront(); //remove a node at the beginning 
 						//of a doubly linked list
-		void addBack(T d);
-		void popBack();
-		void addNode(T d, Node<T>* iter);
-		void deleteNode(T d, Node<T>* iter);
-		Node<T>* findNode(T d);
-		int getSize() const;
-		bool isEmpty() const;
-		void displayList() const;
+		void addBack(T d); //add a ode at the end of doubly linked list
+		void popBack();//remove a node at the end of a doubly linked list
+		void addNode(T d, Node<T>* iter);//add a node in general
+		void deleteNode(T d, Node<T>* iter);//delete a node in general
+		Node<T>* findNode(T d);//return a pointer to a node in a doubly linked list and
+								//return NULL otherwise
+		int getSize() const;//return size of a doubly linked list
+		bool isEmpty() const;//return true if empty and false otherwise
+		void displayList() const;//display a doubly linekd list
 		
-		Node<T>* getHead() const;
+		Node<T>* getHead() const;//get the head
 };
-
-
-
 template <class T>
 DoublyLinkedList<T> :: DoublyLinkedList()
 {
@@ -173,7 +171,6 @@ void DoublyLinkedList<T> :: displayList() const
 	}
 	cout<<"NULL"<<endl;
 }
-
 template<class T>
 Node<T>* DoublyLinkedList<T> :: getHead() const
 {

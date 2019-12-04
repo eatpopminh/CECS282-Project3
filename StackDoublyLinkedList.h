@@ -20,7 +20,7 @@ StackDoublyLinkedList<T> :: StackDoublyLinkedList()
 	
 }
 template<class T>
-void StackDoublyLinkedList<T> :: displayStack() const
+void StackDoublyLinkedList<T> :: displayStack() const//Display a stack
 {
 	Node<T>* temp = DoublyLinkedList<T>::head;
 	while(temp!=NULL)
@@ -30,7 +30,7 @@ void StackDoublyLinkedList<T> :: displayStack() const
 	}	
 }
 template<class T>
-T StackDoublyLinkedList<T> :: getTop() const
+T StackDoublyLinkedList<T> :: getTop() const //return element at the top of a stack
 {
 	Node<T>* temp = DoublyLinkedList<T>:: head;
 
