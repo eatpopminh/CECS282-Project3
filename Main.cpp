@@ -115,12 +115,12 @@ int getPrecedence(char ch)
   *@param op my operator
   *@return Complex
 **/
-Complex operate(Complex num1, Complex num2, string op)
+Complex operate(Complex num1, Complex num2, char op)
 {
 	cout<<num1.toString()<<num2.toString()<<endl;
-	if(op[0]=='+')return num1 + num2;
-    if(op[0]=='-')return num1 - num2;
-    if(op[0]=='*')return num1 * num2;
+	if(op=='+')return num1 + num2;
+    if(op=='-')return num1 - num2;
+    if(op=='*')return num1 * num2;
     return num1 / num2;
 }
 /**
@@ -150,113 +150,113 @@ bool isOp(string c)
   *
   *
 **/
-void justDoIt(string myString)
-{
-	string express = myString;
-	cout<<express<<endl;
-	StackDoublyLinkedList<string> operators;
-	StackDoublyLinkedList<int> oprands;
-	StackDoublyLinkedList<string> all;
-	StackDoublyLinkedList<Complex> complex;
-	StackDoublyLinkedList<Complex> all2;
-	
-	
-	//push ALL Operators and Oprands into one stack.
-	pushingEverything(all,express);
-	cout<<"all: "<<endl;
-	all.displayList();
-
-	//operators.getTop();
-	//push ONE into Operators or Oprands.
-	//return 1 if Operator
-	//return 0 if Oprands
-//	pushOne(all,operators,oprands);
-
-	while(!all.isEmpty())
-	{
-		pushOne(all,operators,oprands);
-
-		if(operators.getTop()=="i")
-		{
-			operators.popFront();
-			if(oprands.getSize()==2)
-			{
-				int temp1 = oprands.getTop();
-				oprands.popFront();
-				int temp2 = oprands.getTop();
-				oprands.popFront();
-				
-				if(operators.getTop()=="+")
-				{
-					Complex com(temp2,temp1,1);
-					complex.addFront(com);
-					all2.addFront(com);
-
-					cout<<com<<endl;
-				}
-				else
-				{
-					Complex com(temp2,-temp1,1);
-					complex.addFront(com);
-					all2.addFront(com);
-
-					cout<<com<<endl;
-				}
-			}
-			else
-			{
-				int temp1 = oprands.getTop();
-				oprands.popFront();
-				
-				if(operators.getTop()=="+")
-				{
-					Complex com(temp1,1,1);
-					complex.addFront(com);
-					all2.addFront(com);
-
-					cout<<com<<endl;
-				}
-				else
-				{
-					Complex com(temp1,-1,1);
-					complex.addFront(com);
-//					string temp = com.toString();
-					all2.addFront(com);
-					cout<<com<<endl;
-				}
-			}
-			operators.popFront();
-		}
-	}
-	
-	while(all2.getSize()>0)
-	{
-		Complex temp1 = all2.getTop();
-		all2.popFront();
-		Complex temp2 = all2.getTop();
-		all2.popFront();
-		if(operators.getTop()=="+" )
-		{
-			operate(temp2, temp1 ,"+");
-		}
-		if(operators.getTop()=="-" )
-		{
-			operate(temp2, temp1 ,"-");
-		}
-		if(operators.getTop()=="*" )
-		{
-			operate(temp2, temp1 ,"*");
-		}
-		if(operators.getTop()=="*" )
-		{
-			operate(temp2, temp1 ,"*");
-		}
-		if(operators.getTop()=="/" )
-		{
-			operate(temp2, temp1 ,"/");
-		}
-	}
-}
+//void justDoIt(string myString)
+//{
+//	string express = myString;
+//	cout<<express<<endl;
+//	StackDoublyLinkedList<string> operators;
+//	StackDoublyLinkedList<int> oprands;
+//	StackDoublyLinkedList<string> all;
+//	StackDoublyLinkedList<Complex> complex;
+//	StackDoublyLinkedList<Complex> all2;
+//	
+//	
+//	//push ALL Operators and Oprands into one stack.
+//	pushingEverything(all,express);
+//	cout<<"all: "<<endl;
+//	all.displayList();
+//
+//	//operators.getTop();
+//	//push ONE into Operators or Oprands.
+//	//return 1 if Operator
+//	//return 0 if Oprands
+////	pushOne(all,operators,oprands);
+//
+//	while(!all.isEmpty())
+//	{
+//		pushOne(all,operators,oprands);
+//
+//		if(operators.getTop()=="i")
+//		{
+//			operators.popFront();
+//			if(oprands.getSize()==2)
+//			{
+//				int temp1 = oprands.getTop();
+//				oprands.popFront();
+//				int temp2 = oprands.getTop();
+//				oprands.popFront();
+//				
+//				if(operators.getTop()=="+")
+//				{
+//					Complex com(temp2,temp1,1);
+//					complex.addFront(com);
+//					all2.addFront(com);
+//
+//					cout<<com<<endl;
+//				}
+//				else
+//				{
+//					Complex com(temp2,-temp1,1);
+//					complex.addFront(com);
+//					all2.addFront(com);
+//
+//					cout<<com<<endl;
+//				}
+//			}
+//			else
+//			{
+//				int temp1 = oprands.getTop();
+//				oprands.popFront();
+//				
+//				if(operators.getTop()=="+")
+//				{
+//					Complex com(temp1,1,1);
+//					complex.addFront(com);
+//					all2.addFront(com);
+//
+//					cout<<com<<endl;
+//				}
+//				else
+//				{
+//					Complex com(temp1,-1,1);
+//					complex.addFront(com);
+////					string temp = com.toString();
+//					all2.addFront(com);
+//					cout<<com<<endl;
+//				}
+//			}
+//			operators.popFront();
+//		}
+//	}
+//	
+//	while(all2.getSize()>0)
+//	{
+//		Complex temp1 = all2.getTop();
+//		all2.popFront();
+//		Complex temp2 = all2.getTop();
+//		all2.popFront();
+//		if(operators.getTop()=="+" )
+//		{
+//			operate(temp2, temp1 ,"+");
+//		}
+//		if(operators.getTop()=="-" )
+//		{
+//			operate(temp2, temp1 ,"-");
+//		}
+//		if(operators.getTop()=="*" )
+//		{
+//			operate(temp2, temp1 ,"*");
+//		}
+//		if(operators.getTop()=="*" )
+//		{
+//			operate(temp2, temp1 ,"*");
+//		}
+//		if(operators.getTop()=="/" )
+//		{
+//			operate(temp2, temp1 ,"/");
+//		}
+//	}
+//}
 /**
   *Change string into Complex
   *@param spot 
@@ -264,47 +264,70 @@ void justDoIt(string myString)
 **/
 Complex intoComplex(string spot)
 {
+	cout<<spot<<endl;
 	int index = 1;
 	string temp1 = "";
 	string temp2 = "";
+	char sign = ' ';
+
 	while(index<spot.length())
 	{
-		char sign = ' ';
-
-		if(spot[index]!='+' || spot[index]!='-')
+		if(spot[index]=='+' || spot[index]=='-')
 		{
-			temp1=temp1+spot[index];
-			//flag=false;
+			break;
 		}
+		temp1=temp1+spot[index];
 		index++;
+
 	}
-	index = spot.length();
-	while(index>0)
+	while(index<spot.length())
 	{
 		if(spot[index]=='i')
 		{
-			index--;
-			if(spot[index]=='+' || spot[index]=='-')
-			{
-				temp2 = "1";
-				break;
-			}
-			
-			temp2 = temp2 + spot[index];
+			break;
 		}
-		index--;
-		
+		temp2 = temp2 +spot[index];
+		index++;
 	}
+
 		int i;
 		istringstream(temp1)>>i;
 		int p;
 		istringstream(temp2)>>p;
 		Complex val(i,p,1);
+		
+			cout<<temp2<<endl;
+
 		return val;
 	
 }
+Complex realNum(string myString)
+{
+	stringstream ss(myString);
+	int x;
+	ss>>x;
+	Complex com(x,0,1);
+	return com;
+}
+Complex negImNum(string myString)
+{
+	stringstream ss(myString);
+	int x;
+	ss>>x;
+	Complex com(0,-x,1);
+	return com;
+}
+Complex imNum(string myString)
+{
+	stringstream ss(myString);
+	int x;
+	ss>>x;
+	Complex com(0,x,1);
+	return com;
+}
+
 //Global varible
-	StackDoublyLinkedList<string> operators;
+	StackDoublyLinkedList<char> operators;
 	StackDoublyLinkedList<Complex> oprands;
 	StackDoublyLinkedList<string> all;
 	StackDoublyLinkedList<Complex> complex;
@@ -414,67 +437,275 @@ void justDoIt2(string myString)
   *
   *@return Complex
 **/
-Complex start1()
-{	
-	cout<<"all2"<<endl;
-	all2.displayList();
+//Complex start1()
+//{	
+//	cout<<"all2"<<endl;
+//	all2.displayList();
+//
+//while(!all2.isEmpty())
+//{
+//		
+//		if(all2.getTop()=="(" || all2.getTop()==")" || all2.getTop()=="+" 
+//		|| all2.getTop()=="-" || all2.getTop()=="*" || all2.getTop()=="/" || all2.getTop()=="%")
+//		{
+//			operators.addFront(all2.getTop());
+//			all2.popFront();
+//		}
+//		else{
+//			//cout<<all2.getTop()<<endl;
+//			oprands.addFront(intoComplex(all2.getTop()));
+//			oprands.getTop();
+//			all2.popFront();
+//		}
+//		//all2.popFront();
+//}
+//
+//cout<<"all2"<<endl;
+//	all2.displayList();
+//	cout<<"OPERATOR"<<endl;
+//	operators.displayList();
+//	cout<<"OPRANDS"<<endl;
+//	oprands.displayList();
+//
+//if(operators.getTop()=="*")
+//{
+//	Complex temp1 = oprands.getTop();
+//	oprands.popFront();
+//	Complex temp2 = oprands.getTop();
+//	oprands.popFront();
+//	
+//	Complex temp = temp2 * temp1;
+//	return temp;
+//}
+//if(operators.getTop()=="/")
+//{
+//	Complex temp1 = oprands.getTop();
+//	oprands.popFront();
+//	Complex temp2 = oprands.getTop();
+//	oprands.popFront();
+//	
+//	Complex temp = temp2 / temp1;
+//	return temp;
+//}
+//if(operators.getTop()=="+")
+//{
+//	Complex temp1 = oprands.getTop();
+//	oprands.popFront();
+//	Complex temp2 = oprands.getTop();
+//	oprands.popFront();
+//	
+//	Complex temp = temp2 + temp1;
+//	return temp;
+//}
+//if(operators.getTop()=="-")
+//{
+//	Complex temp1 = oprands.getTop();
+//	oprands.popFront();
+//	Complex temp2 = oprands.getTop();
+//	oprands.popFront();
+//	
+//	Complex temp = temp2 - temp1;
+//	return temp;
+//}
+//
+//	cout<<"all2"<<endl;
+//	all2.displayList();
+//	cout<<"OPERATOR"<<endl;
+//	operators.displayList();
+//	cout<<"OPRANDS"<<endl;
+//	oprands.displayList();
+//}
 
-while(!all2.isEmpty())
+void start2(string myString)
 {
-		if(all2.getTop()=="(" || all2.getTop()==")" || all2.getTop()=="+" 
-		|| all2.getTop()=="-" || all2.getTop()=="*" || all2.getTop()=="/")
+		int myLength = myString.length();
+		string temp = "";
+		
+		
+		for(int i = 0 ; i<myLength ; i++)
 		{
-			operators.addFront(all2.getTop());
-			all2.popFront();
-		}
-		else{
-			oprands.addFront(intoComplex(all2.getTop()));
+			if(isDigit(myString[i]))
+			{
+				temp = temp + myString[i];	
+			}
+			else if(!isDigit(myString[i])) //HAS TO BE A OPERATOR
+			{
+//				if(operators.getTop()!='=')
+//				{
+					
+				
+				operators.addFront(myString[i]);
+				
+				if(myString[i]=='i')
+				{
+					if(myString[i-1]=='+' || myString[i-1]=='-')
+					{
 
-			all2.popFront();
-		}
-		//all2.popFront();
-}
+							oprands.addFront(imNum("1"));
+						
+						if(myString[i-1]=='+')
+						{
+							if(oprands.getSize()>=2)
+							{
+								Complex temp1 = oprands.getTop();
+								oprands.popFront();
+								Complex temp2 = oprands.getTop();
+								oprands.popFront();
+								operators.popFront();
+								operators.popFront();
+								
+								Complex com = temp2 + temp1;
+								oprands.addFront(com);
+							}
+						}
+						if(myString[i-1]=='-')
+						{
+							if(oprands.getSize()>=2)
+							{
+								Complex temp1 = oprands.getTop();
+								oprands.popFront();
+								Complex temp2 = oprands.getTop();
+								oprands.popFront();
+								operators.popFront();
+								operators.popFront();
+								
+								Complex com = temp2 - temp1;
+								oprands.addFront(com);
+							}
+						}
+					}
+					else
+					{
+						int back = i;						
+						while(back>=0)
+						{
+							if(myString[back]=='+' || myString[back]=='-')
+							{
+								oprands.addFront(imNum(temp));
+								
+								if(myString[back]=='+')
+								{
+									if(oprands.getSize()>=2)
+									{
+										Complex temp1 = oprands.getTop();
+										oprands.popFront();
+										Complex temp2 = oprands.getTop();
+										oprands.popFront();
+										
+										operators.popFront();
+										operators.popFront();
+										
+										Complex com = temp2 + temp1;
+										oprands.addFront(com);
+									}
+								}
+								if(myString[back]=='-')
+								{
+									if(oprands.getSize()>=2)
+									{
+										Complex temp1 = oprands.getTop();
+										oprands.popFront();
+										Complex temp2 = oprands.getTop();
+										oprands.popFront();
+										operators.popFront();
+										operators.popFront();
+										
+										Complex com = temp2 - temp1;
+										oprands.addFront(com);
+									}
+								}
+								back=0;
 
-if(operators.getTop()=="*")
-{
-	Complex temp1 = oprands.getTop();
-	oprands.popFront();
-	Complex temp2 = oprands.getTop();
-	oprands.popFront();
+							}
+//							if(myString[back]=='-')
+//							{
+//								oprands.addFront(imNum(temp));
+//								back=0;
+//							}
+							
+							back--;	
+						}
+					}	
+				}
+				if(myString[i]=='+' || myString[i]=='-' || myString[i]=='*')
+				{
+					cout<<"hello"<<endl;
+					cout<<oprands.getSize()<<endl;
+					if(oprands.getSize()>=2)
+					{
+						//oprands.popFront();
+						if(myString[i]=='+')
+						{
+							Complex temp1 = oprands.getTop();
+							oprands.popFront();
+							Complex temp2 = oprands.getTop();
+							oprands.popFront();
+							//operators.popFront();
+							
+							Complex com = temp2 + temp1;
+							oprands.addFront(com);
+						}
+						if(myString[i]=='-')
+						{
+							Complex temp1 = oprands.getTop();
+							cout<<temp1<<endl;
+							oprands.popFront();
+							Complex temp2 = oprands.getTop();
+							cout<<temp2<<endl;
+							oprands.popFront();
+							//operators.popFront();
+							
+							Complex com = temp2 - temp1;
+							oprands.addFront(com);
+						}
+						if(myString[i]=='*')
+						{
+							
+							cout<<"FUCK ME"<<endl;
+							Complex temp1 = oprands.getTop();
+							cout<<temp1<<endl;
+							oprands.popFront();
+							Complex temp2 = oprands.getTop();
+							cout<<temp2<<endl;
+							
+							
+							oprands.popFront();
+							
+							//operators.popFront();
+							
+							Complex com = temp2 * temp1;
+							oprands.addFront(com);
+						}
+						
+					}
+					oprands.addFront(realNum(temp));
+				}
+				temp = "";
+			
+			}
+			
+
 	
-	Complex temp = temp1 * temp2;
-	return temp;
-}
-if(operators.getTop()=="/")
-{
-	Complex temp1 = oprands.getTop();
-	oprands.popFront();
-	Complex temp2 = oprands.getTop();
-	oprands.popFront();
+				
+		}
+		if(operators.getTop()=='=')
+		{
+			operators.popFront();
+			Complex temp1 = oprands.getTop();
+			oprands.popFront();
+			Complex temp2 = oprands.getTop();
+			oprands.popFront();
+			
+			
+			Complex temp3 = operate(temp2,temp1, operators.getTop());
+			oprands.addFront(temp3);
+			
+		}
 	
-	Complex temp = temp2 / temp1;
-	return temp;
-}
-if(operators.getTop()=="+")
-{
-	Complex temp1 = oprands.getTop();
-	oprands.popFront();
-	Complex temp2 = oprands.getTop();
-	oprands.popFront();
 	
-	Complex temp = temp2 + temp1;
-	return temp;
-}
-if(operators.getTop()=="-")
-{
-	Complex temp1 = oprands.getTop();
-	oprands.popFront();
-	Complex temp2 = oprands.getTop();
-	oprands.popFront();
-	
-	Complex temp = temp2 - temp1;
-	return temp;
-}
+
+
+
 	cout<<"all2"<<endl;
 	all2.displayList();
 	cout<<"OPERATOR"<<endl;
@@ -495,21 +726,11 @@ int main()
 	while(getline(input,a))
 	{
 		myString = a;
-		justDoIt2(myString);
-		//out<<start1()<<endl;
+		//justDoIt2(myString);
+		start2(myString);
 	}
-	
-	cout<<"MYANSWER"<<start1()<<endl;
-	cout<<"all2"<<endl;
-	all2.displayList();
-	
-	cout<<"all2"<<endl;
-	all2.displayList();
-	cout<<"OPERATOR"<<endl;
-	operators.displayList();
-	cout<<"OPRANDS"<<endl;
-	oprands.displayList();
-	//cout<<start1()<<endl;
+	//Compl
+
 	return 0;
 }
 
