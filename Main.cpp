@@ -515,7 +515,48 @@ void justDoIt2(string myString)
 //	cout<<"OPRANDS"<<endl;
 //	oprands.displayList();
 //}
-
+string modo(Complex com)
+{
+	string myString = com.toString();
+	int myLength = myString.length();
+	int i = 0;
+	while(i<myLength)
+	{
+		if(myString[i]=='+' || myString[i]=='-')
+		{
+			if(myString[i]=='+')
+			{
+				myString[i]='-';
+			}
+			else if(myString[i]=='-')
+			{
+				myString[i]='+';
+			}
+		}
+		i++;
+	}
+	return myString;
+//	string temp = "";
+//	for(int i = 0 ; i<myLength ; i++)
+//	{
+//		if(isDigit(myString[i]))
+//		{
+//			temp = temp + myString[i];	
+//		}
+//		if(myString[i]=='i')
+//		{
+//			int back = i;						
+//			while(back>=0)
+//			{
+//				if(myString[back]=='+' || myString[back]=='-')
+//				{
+//				}
+//			}
+//		}
+//		if()
+//	}
+	
+}
 void start2(string myString)
 {
 		int myLength = myString.length();
@@ -530,12 +571,190 @@ void start2(string myString)
 			}
 			else if(!isDigit(myString[i])) //HAS TO BE A OPERATOR
 			{
-//				if(operators.getTop()!='=')
-//				{
-					
-				
 				operators.addFront(myString[i]);
 				
+				if(myString[i]=='(')
+				{
+					while(operators.getTop()!=')')
+					{
+						i++;
+						
+						if(isDigit(myString[i]))
+						{
+							temp = temp + myString[i];	
+						}
+						else if(!isDigit(myString[i])) //HAS TO BE A OPERATOR
+						{
+							operators.addFront(myString[i]);
+						}
+						if(myString[i]=='i')
+						{
+							//cout<<temp<<endl;
+							if(myString[i-1]=='+' || myString[i-1]=='-')
+							{
+		
+									oprands.addFront(imNum("1"));
+								
+								if(myString[i-1]=='+')
+								{
+									if(oprands.getSize()>=2)
+									{
+										Complex temp1 = oprands.getTop();
+										oprands.popFront();
+										Complex temp2 = oprands.getTop();
+										oprands.popFront();
+										operators.popFront();
+										operators.popFront();
+										
+										Complex com = temp2 + temp1;
+										oprands.addFront(com);
+									}
+								}
+								if(myString[i-1]=='-')
+								{
+									if(oprands.getSize()>=2)
+									{
+										Complex temp1 = oprands.getTop();
+										oprands.popFront();
+										Complex temp2 = oprands.getTop();
+										oprands.popFront();
+										operators.popFront();
+										operators.popFront();
+										
+										Complex com = temp2 - temp1;
+										oprands.addFront(com);
+									}
+								}
+							}
+							else
+							{
+								int back = i;						
+								while(back>=0)
+								{
+									if(myString[back]=='+' || myString[back]=='-')
+									{
+//										cout<<"FUCK ME PL"<<endl;
+//										cout<<i<<endl;
+										oprands.addFront(imNum(temp));
+										if(myString[back]=='+')
+										{
+											if(oprands.getSize()>=2)
+											{
+												Complex temp1 = oprands.getTop();
+												cout<<"temp1: "<<temp1<<endl;
+												oprands.popFront();
+												Complex temp2 = oprands.getTop();
+												cout<<"temp2"<<temp2<<endl;
+												oprands.popFront();
+												
+												operators.popFront();
+												operators.popFront();
+												
+												Complex com = temp2 + temp1;
+												oprands.addFront(com);
+												oprands.displayList();
+											}
+										}
+										if(myString[back]=='-')
+										{
+											if(oprands.getSize()>=2)
+											{
+												Complex temp1 = oprands.getTop();
+												oprands.popFront();
+												Complex temp2 = oprands.getTop();
+												oprands.popFront();
+												operators.popFront();
+												operators.popFront();
+												
+												Complex com = temp2 - temp1;
+												oprands.addFront(com);
+											}
+										}
+										back=0;
+		
+									}
+		//							if(myString[back]=='-')
+		//							{
+		//								oprands.addFront(imNum(temp));
+		//								back=0;
+		//							}
+									
+									back--;	
+								}	
+							}
+						}
+						
+						else if(myString[i]=='+' || myString[i]=='-' || myString[i]=='*')
+						{	
+
+							if(oprands.getSize()>=2)
+							{
+								//oprands.popFront();
+								if(myString[i]=='+')
+								{
+									Complex temp1 = oprands.getTop();
+									cout<<"temp1: "<<temp1<<endl;
+									oprands.popFront();
+									Complex temp2 = oprands.getTop();
+									cout<<"temo2: "<<temp2<<endl;
+									oprands.popFront();
+									//operators.popFront();
+									
+									Complex com = temp2 + temp1;
+									oprands.addFront(com);
+								}
+								if(myString[i]=='-')
+								{
+									Complex temp1 = oprands.getTop();
+									cout<<temp1<<endl;
+									oprands.popFront();
+									Complex temp2 = oprands.getTop();
+									cout<<temp2<<endl;
+									oprands.popFront();
+									//operators.popFront();
+									
+									Complex com = temp2 - temp1;
+									oprands.addFront(com);
+								}
+								if(myString[i]=='*')
+								{
+									
+									cout<<"FUCK ME"<<endl;
+									Complex temp1 = oprands.getTop();
+									cout<<temp1<<endl;
+									oprands.popFront();
+									Complex temp2 = oprands.getTop();
+									cout<<temp2<<endl;
+									
+									
+									oprands.popFront();
+									
+									//operators.popFront();
+									
+									Complex com = temp2 * temp1;
+									oprands.addFront(com);
+								}
+								
+							}
+							oprands.addFront(realNum(temp));
+							temp="";
+						}
+					}
+					if(myString[i+1]=='%')
+					{
+						string temp = modo(oprands.getTop());
+						oprands.popFront();
+						oprands.addFront(intoComplex(temp));
+						cout<<"PUSSY ASS"<<endl;
+					}
+					
+					operators.popFront();
+					operators.popFront();
+
+				}
+				
+				
+				//IF IT'S 'I'.
 				if(myString[i]=='i')
 				{
 					if(myString[i-1]=='+' || myString[i-1]=='-')
@@ -591,7 +810,6 @@ void start2(string myString)
 										oprands.popFront();
 										Complex temp2 = oprands.getTop();
 										oprands.popFront();
-										
 										operators.popFront();
 										operators.popFront();
 										
@@ -627,6 +845,7 @@ void start2(string myString)
 						}
 					}	
 				}
+				//IF '+' OR '-' OR '*'. 
 				if(myString[i]=='+' || myString[i]=='-' || myString[i]=='*')
 				{
 					cout<<"hello"<<endl;
@@ -713,6 +932,23 @@ void start2(string myString)
 	cout<<"OPRANDS"<<endl;
 	oprands.displayList();
 }
+void clearly()
+{
+	int size = oprands.getSize();
+	int i = 0;
+	while(i<size)
+	{
+		oprands.popFront();
+		i++;
+	}
+	size = operators.getSize();
+	i = 0;
+	while(i<size)
+	{
+		operators.popFront();
+		i++;
+	}
+}
 int main()
 {
 	string a;
@@ -728,8 +964,10 @@ int main()
 		myString = a;
 		//justDoIt2(myString);
 		start2(myString);
+		out<<oprands.getTop()<<endl;
+		clearly();
+		
 	}
-	//Compl
 
 	return 0;
 }
